@@ -372,16 +372,22 @@ const ProductList = () => {
               <div className="product-list">
                 {category.plants.map((plant, plantIndex) => (
                   <div className="product-card" key={plantIndex}>
+                    <div className="product-title">{plant.name}</div>
                     <img
                       className="product-image"
                       src={plant.image}
                       alt={plant.name}
                     />
-                    <div className="product-title">{plant.name}</div>
-                    {/*Similarly like the above plant.name show other details like description and cost*/}
+                    <div className="product-price">{plant.cost}</div>
+                    <div className="product-description">
+                      {plant.description}
+                    </div>
                     <button
-                      className="product-button"
+                      className={`product-button ${
+                        addedToCart[plant.name] ? "added-to-cart" : ""
+                      }`}
                       onClick={() => handleAddToCart(plant)}
+                      disabled={addedToCart[plant.name]}
                     >
                       Add to Cart
                     </button>
